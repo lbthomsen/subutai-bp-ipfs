@@ -30,7 +30,7 @@
         state: present
       with_items: 
         - golang-1.10
-        - nginx
+        - apache2
         - git
 
     - name: Set go version
