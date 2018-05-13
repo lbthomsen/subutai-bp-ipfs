@@ -24,16 +24,55 @@
   remote_user: root
   tasks: 
 
-    - name: Add apt-transport-https
-      apt: 
-        name: apt-transport-https
-
     - name: Install required debs
       apt: 
         name: "{{ item }}"
         state: present
-        allow_unauthenticated: yes
       with_items: 
-        - unzip 
+        - golang-1.10
+        - nginx
+        - git
+
+    - name: Set go version
+      alternatives:
+        name: go
+        path: /usr/lib/go-1.10/bin/go
+        link: /usr/bin/go
+        priority: 10
+
+    - name: Install ipfs-update
+      command: go get -u github.com/ipfs/ipfs-update
+      args: 
+        creates: go/bin/ipfs-update
+
+    - name: Install ipfs
+      command: go/bin/ipfs-update install latest
+      args: 
+        creates: /usr/local/bin/ipfs
+
+    - name: Initialize ipfs
+      command: ipfs init
+      args: 
+        creates: .ipfs/
+
+    - name: Install ipfs default
+      template:
+        src: files/ipfs.default
+        dest: /etc/default/ipfs
+
+    - name: Install ipfs systemd unit
+      template: 
+        src: files/ipfs.service
+        dest: /lib/systemd/system
+
+    - name: Reload systemd
+      systemd: daemon_reload=yes
+
+    - name: Enable and start ipfs daemon
+      systemd:
+        name: ipfs
+        state: started
+        enabled: true
+        masked: no
         
 # vim: ts=2 et nowrap autoindent

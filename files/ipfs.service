@@ -1,0 +1,13 @@
+[Unit]
+Description=Run ipfs daemon
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/default/ipfs
+ExecStart=/usr/local/bin/ipfs daemon
+Restart=on-failure
+LimitNICE=+10
+
+[Install]
+WantedBy=multi-user.target
+Alias=ipfs.service
