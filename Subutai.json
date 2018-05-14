@@ -37,19 +37,19 @@
         "ansible-playbook": "site.yml",
         "extra-vars": [
             {
-                "key": "http-domain",
+                "key": "http_domain",
                 "value": "${httpDomain}"
             },
             {
-                "key": "ipfs-domain",
+                "key": "ipfs_domain",
                 "value": "${ipfsDomain}"
             },
             {
-                "key": "ipfs-path",
+                "key": "ipfs_path",
                 "value": "${ipfsPath}"
             }, 
             {
-                "key": "ipfs-port", 
+                "key": "ipfs_port", 
                 "value": "${ipfsPort}"
             }
         ],
