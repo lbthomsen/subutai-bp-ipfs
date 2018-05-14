@@ -53,7 +53,7 @@
     - name: Initialize ipfs
       command: /bin/bash -c "IPFS_PATH=/root/.ipfs ipfs init"
       args: 
-        creates: .ipfs/
+        creates: .ipfs/config
 
     - name: Install ipfs default
       template:

@@ -13,13 +13,13 @@
             "port-mapping": [
                 {
                     "protocol": "http",
-                    "domain": "${domain}",
+                    "domain": "${httpDomain}",
                     "internal-port": "80",
                     "external-port": "80"
                 },
                 {
                     "protocol": "tcp",
-                    "domain": "${domain}",
+                    "domain": "${ipfsDomain}",
                     "internal-port": "${port}",
                     "external-port": "${port}"
                 }
@@ -70,11 +70,17 @@
         "ipfsPath": {
             "description": "IPFS Path",
             "type": "string",
-            "default": "/ipns/QmPUDnVJRkzMnsErJcbfesc4UFJhBuRyCEfMi39cY9fESn",
-            "validation": "[a-zA-Z0-9/]+"
+            "default": "/ipns/Qm...",
+            "validation": ".+"
         },
-        "domain": {
-            "description": "Enter the application domain name",
+        "httpDomain": {
+            "description": "Enter web domain name",
+            "type": "domain",
+            "default": "change.the.domain",
+            "validation": "[a-zA-Z0-9]+"
+        },
+        "ipfsDomain": {
+            "description": "Enter ipfs domain name",
             "type": "domain",
             "default": "change.the.domain",
             "validation": "[a-zA-Z0-9]+"
