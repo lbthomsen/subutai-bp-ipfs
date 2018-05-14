@@ -71,7 +71,7 @@
             "description": "IPFS Path",
             "type": "string",
             "default": "/ipns/QmPUDnVJRkzMnsErJcbfesc4UFJhBuRyCEfMi39cY9fESn",
-            "validation": "[a-zA-Z0-9]+"
+            "validation": "[a-zA-Z0-9/]+"
         },
         "domain": {
             "description": "Enter the application domain name",
