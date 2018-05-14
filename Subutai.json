@@ -79,7 +79,7 @@
             "default": "4001",
             "validation": "[0-9]+"
         }, 
-        "ipfs_path": {
+        "ipfsPpath": {
             "description": "IPFS Path",
             "type": "string",
             "default": "/ipns/QmPUDnVJRkzMnsErJcbfesc4UFJhBuRyCEfMi39cY9fESn",
