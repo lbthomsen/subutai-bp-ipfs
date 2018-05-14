@@ -1,7 +1,7 @@
 {
     "name": "${environmentName}",
     "description": "IPFS Node",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "author": "https://github.com/lbthomsen",
     "ssh-key": "lth", 
     "containers": [
@@ -67,11 +67,10 @@
             "default": "SMALL",
             "validation": "TINY,SMALL,MEDIUM,LARGE,HUGE"
         }, 
-        "ipfsPath": {
+        "path": {
             "description": "IPFS Path",
             "type": "string",
-            "default": "/ipns/Qm...",
-            "validation": ".+"
+            "default": "/ipns/Qm..."
         },
         "httpDomain": {
             "description": "Enter web domain name",
