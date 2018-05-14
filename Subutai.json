@@ -66,11 +66,6 @@
             "type": "enum",
             "default": "SMALL",
             "validation": "TINY,SMALL,MEDIUM,LARGE,HUGE"
-        }, 
-        "path": {
-            "description": "IPFS Path",
-            "type": "string",
-            "default": "/ipns/Qm..."
         },
         "httpDomain": {
             "description": "Enter web domain name",
@@ -89,6 +84,12 @@
             "type": "string",
             "default": "4001",
             "validation": "[0-9]+"
+        }, 
+        "path": {
+            "description": "Enter port number",
+            "type": "string",
+            "default": "4001",
+            "validation": ".+"
         }
     }
 }
