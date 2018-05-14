@@ -51,7 +51,7 @@
         creates: /usr/local/bin/ipfs
 
     - name: Initialize ipfs
-      command: ipfs init
+      command: /bin/bash -c "IPFS_PATH=/root/.ipfs ipfs init"
       args: 
         creates: .ipfs/
 

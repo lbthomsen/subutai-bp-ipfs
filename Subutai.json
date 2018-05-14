@@ -8,19 +8,43 @@
         {
             "hostname": "ipfs0",
             "template": "debian-stretch",
-            "peer-criteria": "HTTP-GROUP",
-            "size": "${containerSize}"
+            "peer-criteria": "IPFS-GROUP",
+            "size": "${containerSize}", 
+            "port-mapping": [
+                {
+                    "protocol": "http",
+                    "domain": "${domain}",
+                    "internal-port": "80",
+                    "external-port": "80"
+                },
+                {
+                    "protocol": "tcp",
+                    "domain": "${domain}",
+                    "internal-port": "${port}",
+                    "external-port": "${port}"
+                }
+            ]
         }
     ],
     "peer-criteria": [
         {
-            "name": "HTTP-GROUP",
+            "name": "IPFS-GROUP",
             "max-price": "25"
         }
     ],
     "ansible-configuration": {
         "source-url": "https://github.com/lbthomsen/subutai-bp-ipfs/archive/master.zip",
         "ansible-playbook": "site.yml",
+        "extra-vars": [
+            {
+                "key": "domain",
+                "value": "${domain}"
+            }, 
+            {
+                "key": "port", 
+                "value": "${port}"
+            }
+        ],
         "groups": [
             {
                 "name": "ipfs",
@@ -42,6 +66,24 @@
             "type": "enum",
             "default": "SMALL",
             "validation": "TINY,SMALL,MEDIUM,LARGE,HUGE"
+        }, 
+        "domain": {
+            "description": "Enter the application domain name",
+            "type": "domain",
+            "default": "change.the.domain",
+            "validation": "[a-zA-Z0-9]+"
+        },
+        "port": {
+            "description": "Enter port number",
+            "type": "string",
+            "default": "4001",
+            "validation": "[0-9]+"
+        }, 
+        "ipfs_path": {
+            "description": "IPFS Path",
+            "type": "string",
+            "default": "/ipns/QmPUDnVJRkzMnsErJcbfesc4UFJhBuRyCEfMi39cY9fESn",
+            "validation": "[a-zA-Z0-9]+"
         }
     }
 }
