@@ -67,6 +67,12 @@
             "default": "SMALL",
             "validation": "TINY,SMALL,MEDIUM,LARGE,HUGE"
         }, 
+        "ipfsPath": {
+            "description": "IPFS Path",
+            "type": "string",
+            "default": "/ipns/QmPUDnVJRkzMnsErJcbfesc4UFJhBuRyCEfMi39cY9fESn",
+            "validation": "[a-zA-Z0-9]+"
+        },
         "domain": {
             "description": "Enter the application domain name",
             "type": "domain",
@@ -78,12 +84,6 @@
             "type": "string",
             "default": "4001",
             "validation": "[0-9]+"
-        }, 
-        "ipfsPpath": {
-            "description": "IPFS Path",
-            "type": "string",
-            "default": "/ipns/QmPUDnVJRkzMnsErJcbfesc4UFJhBuRyCEfMi39cY9fESn",
-            "validation": "[a-zA-Z0-9]+"
         }
     }
 }
