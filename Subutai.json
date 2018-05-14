@@ -1,7 +1,7 @@
 {
     "name": "${environmentName}",
     "description": "IPFS Node",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "author": "https://github.com/lbthomsen",
     "ssh-key": "lth", 
     "containers": [
@@ -20,8 +20,8 @@
                 {
                     "protocol": "tcp",
                     "domain": "${ipfsDomain}",
-                    "internal-port": "${port}",
-                    "external-port": "${port}"
+                    "internal-port": "${ipfsPort}",
+                    "external-port": "${ipfsPort}"
                 }
             ]
         }
@@ -37,12 +37,20 @@
         "ansible-playbook": "site.yml",
         "extra-vars": [
             {
-                "key": "domain",
-                "value": "${domain}"
+                "key": "http-domain",
+                "value": "${httpDomain}"
+            },
+            {
+                "key": "ipfs-domain",
+                "value": "${ipfsDomain}"
+            },
+            {
+                "key": "ipfs-path",
+                "value": "${ipfsPath}"
             }, 
             {
-                "key": "port", 
-                "value": "${port}"
+                "key": "ipfs-port", 
+                "value": "${ipfsPort}"
             }
         ],
         "groups": [
@@ -79,16 +87,16 @@
             "default": "change.the.domain",
             "validation": "[a-zA-Z0-9]+"
         },
-        "port": {
+        "ipfsPort": {
             "description": "Enter port number",
             "type": "string",
             "default": "4001",
             "validation": "[0-9]+"
         }, 
-        "path": {
+        "ipfsPath": {
             "description": "Enter port number",
             "type": "string",
-            "default": "4001",
+            "default": "/...",
             "validation": ".+"
         }
     }
