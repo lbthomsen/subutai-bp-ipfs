@@ -57,6 +57,14 @@
       args: 
         creates: .ipfs/config
 
+    - name: Find proxy IP
+      command: "dig +short {{ ipfs_domain }}" 
+      register: resolved_ip 
+
+    - name: Set Swarm address
+      command: ipfs config --json Addresses.Announce '["/ip4/{{ resolved_ip.stdout }}/tcp/{{ ipfs_port }}"]'
+      register: ipfs        
+
     - name: Install ipfs default
       template:
         src: files/ipfs.default
@@ -76,20 +84,6 @@
         state: started
         enabled: true
         masked: no
-
-    - name: Find proxy IP
-      command: "dig +short {{ ipfs_domain }}" 
-      register: resolved_ip 
-
-    - name: Set Swarm address
-      command: ipfs config --json Addresses.Announce '["/ip4/{{ resolved_ip.stdout }}/tcp/{{ ipfs_port }}"]'
-      register: ipfs
-
-    - name: Restart ipfs
-      systemd: 
-        name: ipfs
-        state: restarted
-      when: ipfs.changed
 
     - name: Set nginx default site
       template:
